@@ -12,12 +12,19 @@ def _get_module(module: Union[str, ModuleType]) -> ModuleType:
     elif isinstance(module, str):
         return import_module(module)
 
-    raise TypeError('Must be a str or a ModuleType')
+    raise TypeError('''
+        'module' must be a str or a ModuleType
+    ''')
 
 
 def methods_importer(
     method_name: str, modules: List[Union[str, ModuleType]]
 ) -> List[Callable]:
+    if not isinstance(method_name, str):
+        raise TypeError('''
+            'method_name' must be a str
+        ''')
+
     def has_callable_method(module: ModuleType) -> bool:
         return hasattr(module, method_name) and callable(getattr(module, method_name))
 
