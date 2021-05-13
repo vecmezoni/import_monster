@@ -19,13 +19,12 @@ def methods_importer(
     method_name: str, modules: List[Union[str, ModuleType]]
 ) -> List[Callable]:
     def has_callable_method(module: ModuleType) -> bool:
-        return hasattr(module, method_name) and callable(
-            getattr(module, method_name))
+        return hasattr(module, method_name) and callable(getattr(module, method_name))
 
     return reduce(
-        lambda result, module: result +
-        [getattr(module, method_name)] if has_callable_method(
-            module) else result,
-        modules,
+        lambda result, module: result + [getattr(module, method_name)]
+        if has_callable_method(module)
+        else result,
+        map(_get_module, modules),
         [],
     )

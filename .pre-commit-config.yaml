@@ -20,5 +20,6 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: flake8
+        args: [--max-line-length=120]
       - id: double-quote-string-fixer
       - id: check-docstring-first
