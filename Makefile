@@ -5,6 +5,9 @@ PACKAGE_NAME="import_monster"
 test:
 	@py.test tests
 
+run-pre-commit:
+	pre-commit run
+
 clean:
 	@rm -rf `find . -name __pycache__`
 	@rm -f `find . -type f -name '*.py[co]' `
